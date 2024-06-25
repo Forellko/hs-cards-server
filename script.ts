@@ -6,6 +6,10 @@ async function main() {
   const card = await prisma.card.create({data: {addition: ''}})
 }
 
+async function addCard () {
+  const card = await prisma.card.create({data: {addition: }})
+}
+
 main()
   .then(async () => {
     await prisma.$disconnect();
