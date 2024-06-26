@@ -36,15 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetAllCards = exports.addCard = void 0;
+exports.addCard = addCard;
+exports.GetAllCards = GetAllCards;
 var client_1 = require("@prisma/client");
 var prisma = new client_1.PrismaClient();
 function addCard(_a) {
-    var addition = _a.addition, cardType = _a.cardType, classHero = _a.classHero, cost = _a.cost, creationType = _a.creationType, id = _a.id, name = _a.name, rarity = _a.rarity, spellsSchool = _a.spellsSchool, imageURL = _a.imageURL;
-    return __awaiter(this, void 0, void 0, function () {
+    return __awaiter(this, arguments, void 0, function (_b) {
         var card;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var addition = _b.addition, cardType = _b.cardType, classHero = _b.classHero, cost = _b.cost, creationType = _b.creationType, id = _b.id, name = _b.name, rarity = _b.rarity, spellsSchool = _b.spellsSchool, imageURL = _b.imageURL;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0: return [4 /*yield*/, prisma.card.create({
                         data: {
                             addition: addition,
@@ -59,14 +60,13 @@ function addCard(_a) {
                         },
                     })];
                 case 1:
-                    card = _b.sent();
+                    card = _c.sent();
                     console.log(card);
                     return [2 /*return*/];
             }
         });
     });
 }
-exports.addCard = addCard;
 function GetAllCards() {
     return __awaiter(this, void 0, void 0, function () {
         var cards;
@@ -81,4 +81,3 @@ function GetAllCards() {
         });
     });
 }
-exports.GetAllCards = GetAllCards;

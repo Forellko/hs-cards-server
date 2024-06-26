@@ -37,24 +37,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var script_1 = require("./script");
-var path = require('path');
 var express = require('express');
 var app = express();
 var port = 8000;
 var cors = require('cors');
 var router = express.Router();
-app.use('/images', express.static('images'));
 // create application/x-www-form-urlencoded parser
-app.use(express.urlencoded({ extended: false }));
 // parse application/json
 app.use(express.json());
 app.use('/', router);
 app.use(cors());
-app.post('/card', function (req, res) {
-    var body = req.body;
-    console.log(req.body);
-    (0, script_1.addCard)(body);
-});
+app.post('/card', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                body = req.body;
+                return [4 /*yield*/, (0, script_1.addCard)(body)];
+            case 1:
+                _a.sent();
+                return [2 /*return*/, res.json(body)];
+        }
+    });
+}); });
 app.get('/cards', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var cards;
     return __generator(this, function (_a) {
@@ -63,7 +68,7 @@ app.get('/cards', function (req, res) { return __awaiter(void 0, void 0, void 0,
             case 1:
                 cards = _a.sent();
                 res.json(cards);
-                return [2 /*return*/, cards];
+                return [2 /*return*/];
         }
     });
 }); });
