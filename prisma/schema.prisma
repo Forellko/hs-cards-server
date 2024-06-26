@@ -20,4 +20,5 @@ model Card {
   creationType String
   rarity       String
   spellsSchool String
+  imageURL     String
 }

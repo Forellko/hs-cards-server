@@ -36,37 +36,49 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var script_1 = require("./script");
-var path = require('path');
-var express = require('express');
-var app = express();
-var port = 8000;
-var cors = require('cors');
-var router = express.Router();
-app.use('/images', express.static('images'));
-// create application/x-www-form-urlencoded parser
-app.use(express.urlencoded({ extended: false }));
-// parse application/json
-app.use(express.json());
-app.use('/', router);
-app.use(cors());
-app.post('/card', function (req, res) {
-    var body = req.body;
-    console.log(req.body);
-    (0, script_1.addCard)(body);
-});
-app.get('/cards', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var cards;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, script_1.GetAllCards)()];
-            case 1:
-                cards = _a.sent();
-                res.json(cards);
-                return [2 /*return*/, cards];
-        }
+exports.GetAllCards = exports.addCard = void 0;
+var client_1 = require("@prisma/client");
+var prisma = new client_1.PrismaClient();
+function addCard(_a) {
+    var addition = _a.addition, cardType = _a.cardType, classHero = _a.classHero, cost = _a.cost, creationType = _a.creationType, id = _a.id, name = _a.name, rarity = _a.rarity, spellsSchool = _a.spellsSchool, imageURL = _a.imageURL;
+    return __awaiter(this, void 0, void 0, function () {
+        var card;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, prisma.card.create({
+                        data: {
+                            addition: addition,
+                            cardType: cardType,
+                            classHero: classHero,
+                            cost: cost,
+                            creationType: creationType,
+                            name: name,
+                            rarity: rarity,
+                            spellsSchool: spellsSchool,
+                            imageURL: imageURL,
+                        },
+                    })];
+                case 1:
+                    card = _b.sent();
+                    console.log(card);
+                    return [2 /*return*/];
+            }
+        });
     });
-}); });
-app.listen(port, function () {
-    console.log("Listen on port ".concat(port));
-});
+}
+exports.addCard = addCard;
+function GetAllCards() {
+    return __awaiter(this, void 0, void 0, function () {
+        var cards;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, prisma.card.findMany()];
+                case 1:
+                    cards = _a.sent();
+                    console.log(cards);
+                    return [2 /*return*/, cards];
+            }
+        });
+    });
+}
+exports.GetAllCards = GetAllCards;

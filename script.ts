@@ -1,21 +1,38 @@
 import { PrismaClient } from '@prisma/client';
+import ICard from './types/Card';
 
 const prisma = new PrismaClient();
 
-async function main() {
-  const card = await prisma.card.create({data: {addition: ''}})
-}
-
-async function addCard () {
-  const card = await prisma.card.create({data: {addition: }})
-}
-
-main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
+export async function addCard({
+  addition,
+  cardType,
+  classHero,
+  cost,
+  creationType,
+  id,
+  name,
+  rarity,
+  spellsSchool,
+  imageURL,
+}: ICard) {
+  const card = await prisma.card.create({
+    data: {
+      addition,
+      cardType,
+      classHero,
+      cost,
+      creationType,
+      name,
+      rarity,
+      spellsSchool,
+      imageURL,
+    },
   });
+  console.log(card);
+}
+
+export async function GetAllCards() {
+  const cards = await prisma.card.findMany();
+  console.log(cards);
+  return cards;
+}

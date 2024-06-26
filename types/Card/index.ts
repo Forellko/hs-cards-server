@@ -1,15 +1,15 @@
-import TAddition from 'types/Addition';
-import TCardType from 'types/CardType';
-import TClassHero from 'types/ClassHero';
-import TCost from 'types/Cost';
-import TCreationType from 'types/CreationType';
-import TRarity from 'types/Rarity';
-import TSpellsSchool from 'types/SpellsSchool';
+import TAddition from '../Addition';
+import TCardType from '../CardType';
+import TClassHero from '../ClassHero';
+import TCost from '../Cost';
+import TCreationType from '../CreationType';
+import TRarity from '../Rarity';
+import TSpellsSchool from '../SpellsSchool';
 
 interface ICard {
-  id: string;
+  id?: number;
   name: string;
-  description: string;
+  imageURL: string;
   addition: TAddition;
   cardType: TCardType;
   classHero: TClassHero;
